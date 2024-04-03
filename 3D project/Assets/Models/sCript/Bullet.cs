@@ -6,8 +6,8 @@ public class Bullet : MonoBehaviour
 {
     public float moveSpeed = 10f;
     public float lifeTime = 5f;
-
     private Rigidbody _rigidbody;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,19 +20,23 @@ public class Bullet : MonoBehaviour
         _rigidbody.velocity = transform.forward * moveSpeed;
     }
 
-     void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("TargetStanding"))
         {
-            Debug.Log("I hit the standing target");
-            //add cod to dd hit points to your scoreboard
+            Debug.Log("I hit the standing target.");
+            //add code to add hit points to your scoreboard
+            //gray out the standing target
+            Destroy(other.gameObject);
             other.gameObject.SetActive(false);
         }
 
-
-         if(other.gameObject.CompareTag("TargetFloating"))
-         {
+        if(other.gameObject.CompareTag("TargetFloating"))
+        {
             Debug.Log("I hit the floating target");
-         }
+            //add code to add hit points to your scoreboard
+            Destroy(this.gameObject);
+            Destroy(other.gameObject);
+        }
     }
 }
