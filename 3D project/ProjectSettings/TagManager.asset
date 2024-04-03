@@ -8,6 +8,7 @@ TagManager:
   - TargetStanding
   - Ground
   - FirePoint
+  - AmmoBox
   layers:
   - Default
   - TransparentFX

@@ -73,7 +73,7 @@ public float moveSpeed = 1f;
         theCamera.rotation = Quaternion.Euler(theCamera.rotation.eulerAngles + new Vector3(-mouseInput.y, 0f, 0f));
 
         //Handle Shooting
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && _ammo.GetAmmoAmount() > 0)
         {
             //Find the crosshair
             RaycastHit hit;

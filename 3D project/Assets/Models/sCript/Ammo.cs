@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
+using Unity.VisualScripting;
 
 public class Ammo : MonoBehaviour
 { 
@@ -27,15 +29,33 @@ public class Ammo : MonoBehaviour
      public void AddAmmo()
     {
         _ammoAmmount += 10;
-         ammoAmountText.text = _ammoAmmount.ToString();
+        DisplayAmmoAmount();
     }
 
     private void RemoveAmmo()
     {
-
+        _ammoAmmount += 1;
+        DisplayAmmoAmount();
     }
     private void DisplayAmmoAmount()
     {
-        ammoAmountText = "Ammo" + _ammoAmmount.ToString();
+        ammoAmountText.text = "Ammo" + _ammoAmmount.ToString();
+    }
+
+     void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.CompareTag("AmmoBox"))
+        {
+            Destroy(other.gameObject);
+            AddAmmo();
+        }
+    }
+     void OntriggerEnter(Collision other)
+    {
+        if(other.gameObject.CompareTag("AmmoBox"))
+        {
+            Destroy(other.gameObject);
+            AddAmmo();
+        }
     }
 }
