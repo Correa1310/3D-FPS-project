@@ -21,6 +21,11 @@ public class Ammo : MonoBehaviour
     {
       
     }
+
+    public int GetAmmoAmount()
+    {
+        return _ammoAmmount;
+    }
     public void UpdateAmmoAmount()
     {
        _ammoAmmount -= 1;
@@ -32,9 +37,9 @@ public class Ammo : MonoBehaviour
         DisplayAmmoAmount();
     }
 
-    private void RemoveAmmo()
+    public void RemoveAmmo()
     {
-        _ammoAmmount += 1;
+        _ammoAmmount -= 1;
         DisplayAmmoAmount();
     }
     private void DisplayAmmoAmount()

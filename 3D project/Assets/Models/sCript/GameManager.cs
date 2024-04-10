@@ -12,15 +12,22 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        int floatingTarget = gameObject.FindGameObjectsWithTag("TargetFloating").Length
-        int standingTarget = gameObject.FindGameObjectsWithTag("TargetStanding").Length
+        int floatingTarget = GameObject.FindGameObjectsWithTag("TargetFloating").Length;
+        int standingTarget = GameObject.FindGameObjectsWithTag("TargetStanding").Length;
         _targetAmount = floatingTarget + standingTarget;
         targetText.text = "Targets: " + _targetAmount.ToString();
     }
 
     // Update is called once per frame
-    void Update()
+    public void UpdateTargetAmount()
     {
-        
+        _targetAmount -=1;
+        targetText.text = "Targets: " + _targetAmount.ToString();
+
+        if(_targetAmount <= 0)
+        {
+            //Stop timmer
+            GameObject.Find("Game Manager").GetComponent<Timer>().EndGameTimer();
+        }
     }
 }
