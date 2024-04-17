@@ -7,16 +7,15 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI targetText;
-
+    public int winScene;
+    public int loseScene;
     private int _targetAmount;
-
-    public winScene;
-
+    private Timer _timer;
 
     // Start is called before the first frame update
     void Start()
     {
-        GameObject.Find("Game Manager").GetComponent<Timer>();
+        _timer = GameObject.Find("GameManager").GetComponent<Timer>();
         Cursor.lockState = CursorLockMode.Locked;
         int floatingTarget = GameObject.FindGameObjectsWithTag("TargetFloating").Length;
         int standingTarget = GameObject.FindGameObjectsWithTag("TargetStanding").Length;
@@ -26,20 +25,24 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(_timer.GetTimeRemaining)
-        SceneManager.LoadScene(loseScene);
+        if(_timer.GetTimeRemaining() <= 0)
+        {
+            SceneManager.LoadScene(loseScene);
+        }
     }
 
-    // Update is called once per frame
     public void UpdateTargetAmount()
     {
-        _targetAmount -=1;
+        _targetAmount -= 1;
         targetText.text = "Targets: " + _targetAmount.ToString();
 
         if(_targetAmount <= 0)
         {
-            //Stop timmer
+            //stop the timer
             GameObject.Find("Game Manager").GetComponent<Timer>().EndGameTimer();
+
+            //Send player to the win scene
+            SceneManager.LoadScene(winScene);
         }
     }
 }

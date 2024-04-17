@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - FirePoint
   - AmmoBox
+  - loseScene
   layers:
   - Default
   - TransparentFX
