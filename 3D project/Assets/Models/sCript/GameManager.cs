@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         if(_targetAmount <= 0)
         {
             //stop the timer
-            GameObject.Find("Game Manager").GetComponent<Timer>().EndGameTimer();
+            GameObject.Find("GameManager").GetComponent<Timer>().EndGameTimer();
 
             //Send player to the win scene
             SceneManager.LoadScene(winScene);

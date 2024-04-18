@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
     {
         if(other.gameObject.CompareTag("TargetStanding") || other.gameObject.CompareTag("TargetFloating"))
         {
-            //Debug.Log("I hit the standing target.");
+            Debug.Log("I hit the standing target.");
             //add code to add hit points to your scoreboard
             GameObject.Find("GameManager").GetComponent<GameManager>().UpdateTargetAmount();
             //gray out the standing target
