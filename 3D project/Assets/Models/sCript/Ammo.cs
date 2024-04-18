@@ -7,55 +7,39 @@ using Unity.VisualScripting;
 
 public class Ammo : MonoBehaviour
 { 
-    public TextMeshProUGUI ammoAmountText;
+  public TextMeshProUGUI ammoAmountText;
+    private int _ammoAmount = 10;
 
-    private int _ammoAmmount = 10;
     // Start is called before the first frame update
     void Start()
     {
         //Display ammo amount
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-      
-    }
-
-    public int GetAmmoAmount()
-    {
-        return _ammoAmmount;
-    }
-    public void UpdateAmmoAmount()
-    {
-       _ammoAmmount -= 1;
-       ammoAmountText.text = _ammoAmmount.ToString();
-    }
-     public void AddAmmo()
-    {
-        _ammoAmmount += 10;
         DisplayAmmoAmount();
     }
 
     public void RemoveAmmo()
     {
-        _ammoAmmount -= 1;
+        _ammoAmount -= 1;
         DisplayAmmoAmount();
     }
-    private void DisplayAmmoAmount()
+
+    public void AddAmmo()
     {
-        ammoAmountText.text = "Ammo" + _ammoAmmount.ToString();
+        _ammoAmount += 10;
+        DisplayAmmoAmount();
     }
 
-     void OnCollisionEnter(Collision other)
+    public int GetAmmoAmount()
     {
-        if(other.gameObject.CompareTag("AmmoBox"))
-        {
-            Destroy(other.gameObject);
-            AddAmmo();
-        }
+        return _ammoAmount;
     }
-     void OntriggerEnter(Collision other)
+
+    private void DisplayAmmoAmount()
+    {
+        ammoAmountText.text = "Ammo: " + _ammoAmount.ToString();
+    }
+
+    void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("AmmoBox"))
         {
